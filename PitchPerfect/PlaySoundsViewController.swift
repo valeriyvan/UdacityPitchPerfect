@@ -17,7 +17,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var stopButton: UIButton!
 
     var recordedAudio: RecordedAudio?
-
+    
     lazy var player: AVAudioPlayer? = {
         [unowned self] in
         if let recordedAudio = self.recordedAudio,
@@ -55,6 +55,15 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     // Helper
+    func stopPlayer() {
+        player?.stop()
+        if let audioEngine = audioEngine {
+            audioEngine.stop()
+            audioEngine.reset()
+        }
+    }
+    
+    // Helper
     func playWithRate(rate: Float) {
         if let player = player {
             player.enableRate = true
@@ -66,10 +75,12 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     @IBAction func playSlow(sender: UIButton) {
+        stopPlayer()
         playWithRate(0.5)
     }
 
     @IBAction func playFast(sender: UIButton) {
+        stopPlayer()
         playWithRate(2.0)
     }
 
@@ -95,7 +106,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
             audioPlayerNode?.scheduleFile(audioFile, atTime: nil, completionHandler: {
                 [unowned self] in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                     self.stopButton.enabled = false
+                    self.stopButton.enabled = false
                 })
             })
             audioEngine.startAndReturnError(nil)
@@ -104,10 +115,12 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     @IBAction func playChipmunk(sender: AnyObject) {
+        stopPlayer()
         playAudioWithPith(1000.0)
     }
     
     @IBAction func playDarthvader(sender: UIButton) {
+        stopPlayer()
         playAudioWithPith(-1000.0)
     }
 

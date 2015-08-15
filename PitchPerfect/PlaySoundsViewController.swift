@@ -92,7 +92,12 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
             audioEngine.attachNode(changePitchEffect)
             audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
             audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-            audioPlayerNode?.scheduleFile(audioFile, atTime: nil, completionHandler: { [unowned self] in self.stopButton.enabled = false })
+            audioPlayerNode?.scheduleFile(audioFile, atTime: nil, completionHandler: {
+                [unowned self] in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                     self.stopButton.enabled = false
+                })
+            })
             audioEngine.startAndReturnError(nil)
             audioPlayerNode?.play()
         }
@@ -120,6 +125,6 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     // MARK: - AVAudioPlayerDelegate
 
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
-        stopButton.enabled = true
+        stopButton.enabled = false
     }
 }

@@ -1,1 +1,3 @@
-Udacity iOS Developer Nanodegree Pitch Perfect project
+[Udacity iOS Developer Nanodegree](https://www.udacity.com/course/ios-developer-nanodegree--nd003) Pitch Perfect project
+
+I've attended this course just to show it in my CV. I am developing for iOS since 2009 and was sure I wouldn't learn anything new here. I was wrong. I've learnt something new at the very first project. AVAudioEngine. About it I have known it has appeared in iOS 8 and somehow connected to audio processing. Don't want to say I am a pro in AVAudioEngine now. Don't get me wrong. But I know now what is it about and could use some of it's API. This given me ideas of new apps.

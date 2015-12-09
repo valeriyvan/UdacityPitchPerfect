@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RecordSoundsViewController : UIViewController
-
+@property (nonatomic, weak) IBOutlet UIButton *recordButton;
+@property (nonatomic, weak) IBOutlet UILabel *recordingInProgress;
+@property (nonatomic, weak) IBOutlet UIButton *stopButton;
 @end

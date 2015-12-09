@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlaySoundsViewController : UIViewController
+@class RecordedAudio;
 
+@interface PlaySoundsViewController : UIViewController
+@property (nonatomic, strong) RecordedAudio *recordedAudio;
 @end

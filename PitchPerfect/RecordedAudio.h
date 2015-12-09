@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface RecordedAudio : NSObject
-
+@property (nonatomic, strong) NSURL *fileURL;
+@property (nonatomic, strong) NSString *title;
 @end
